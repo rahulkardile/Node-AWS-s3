@@ -18,7 +18,8 @@ async function getObjectURL(key) {
         Key: key
     });
 
-    const url = await getSignedUrl(s3Client, command);
+    // it will expire in 50 sec
+    const url = await getSignedUrl(s3Client, command, { expiresIn: 50 });
     return url;
 }
 
@@ -29,7 +30,8 @@ const putObject = async (fileName, contentType) => {
         ContentType: contentType
     });
 
-    const url = await getSignedUrl(s3Client, command);
+    // it will expire in 50 sec
+    const url = await getSignedUrl(s3Client, command, { expiresIn: 50 });
     return url;
 }
 
